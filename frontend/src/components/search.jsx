@@ -2,6 +2,8 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { Search, Loader } from 'lucide-react';
 import { formatDistanceToNow, parseISO } from 'date-fns';
 
+const API_URL = "http://127.0.0.1:8000"
+
 const SearchPage = () => {
   const [conversations, setConversations] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,7 +13,7 @@ const SearchPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://8000-idx-automatio-1740212543357.cluster-rz2e7e5f5ff7owzufqhsecxujc.cloudworkstations.dev/fb/');
+        const response = await fetch(API_URL+'/fb/');
         if (!response.ok) throw new Error('Failed to fetch conversations');
         const data = await response.json();
         setConversations(data.conversations);

@@ -18,8 +18,8 @@ import {
 } from 'lucide-react';
 import ReactMarkdown from "react-markdown";
 
+const API_URL = "http://127.0.0.1:8000"
 
-// Conversation Card Component
 const ConversationCard = ({ 
   conversation, 
   isSubscribed, 
@@ -206,7 +206,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://8000-idx-automatio-1740212543357.cluster-rz2e7e5f5ff7owzufqhsecxujc.cloudworkstations.dev/fb');
+        const response = await fetch(API_URL+'/fb');
         if (!response.ok) throw new Error('Network response was not ok');
         const jsonData = await response.json();
         setData(jsonData);
@@ -244,7 +244,7 @@ const Dashboard = () => {
     setAnalyzing(true);
     setSelectedConversation(conversation);
     try {
-      const response = await fetch('https://8000-idx-automatio-1740212543357.cluster-rz2e7e5f5ff7owzufqhsecxujc.cloudworkstations.dev/analyze-messages/', {
+      const response = await fetch(API_URL+'/analyze-messages/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
